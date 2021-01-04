@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import TodoApp from './components/TodoApp';
+import Todos from './components/Todos';
 import ThemeTogglerButton from './components/ThemeTogglerButton';
 import ThemeContext from './context/themeContext';
 import themes from './context/theme';
 
 
-export default () => {
+const TodoApp = () => {
   const [theme, setTheme] = useState(themes.light);
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -18,10 +18,12 @@ function Content() {
   const { theme } = useContext(ThemeContext);
   return (
     <div style={{ backgroundColor: theme.background, color: theme.foreground }}>
-      <TodoApp />
+      <Todos />
       <ThemeTogglerButton />
     </div>
   );
 }
+
+export default TodoApp;
 
 

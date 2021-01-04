@@ -1,9 +1,5 @@
 import { createContext } from "react";
-import themes from './theme';
 
-const ThemeContext = createContext({
-  theme: themes.light,
-  setTheme: () => {}
-});
+const ThemeContext = createContext();
 
 export default ThemeContext;

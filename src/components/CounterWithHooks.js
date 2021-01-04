@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React,{ useState } from 'react';
+
 
 const useCounter = () => {
-  const [count, setCount] = useState(0);
+    const [ count, setCounter ] = useState(0);
+    const incrementCount = () => {
+        setCounter(count+ 1);
+    }
+    const decrementCount = () => {
+      setCounter(count- 1);
+  }
+  return [count,incrementCount,decrementCount];
+}
 
-  const onIncrease = () => setCount(count + 1);
-  const onDecrease = () => setCount(count - 1);
-
-  return [ count, onIncrease, onDecrease ];
-};
-
-const CounterWithHooks = () => {
-  const [ count, onIncrease, onDecrease ] = useCounter();
-
+const Counter =()=>{
+  const [ count, incrementCount, decrementCount ] = useCounter();
   return (
     <div>
-      <div>Current count: {count}</div>
-      <div>
-        <button onClick={onDecrease}>-</button>
-        <button onClick={onIncrease}>+</button>
-      </div>
+      <div>{count}</div>
+      <button onClick={incrementCount}>+</button>
+      <button onClick={decrementCount}>-</button>
     </div>
-  );
-};
+  )
+}
 
-export default CounterWithHooks;
+export default Counter;
