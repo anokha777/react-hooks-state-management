@@ -1,46 +1,33 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export const initialState = {
   todos: [
     {
-      id: 1,
+      id: uuidv4(),
       title: 'List 1',
-      completed: false
+      completed: false,
     },
     {
-      id: 2,
+      id: uuidv4(),
       title: 'List 2',
-      completed: false
+      completed: false,
     },
     {
-      id: 3,
+      id: uuidv4(),
       title: 'List 3',
-      completed: false
-    }
-  ]
+      completed: false,
+    },
+  ],
 };
 
 export default function reducer(state, action) {
   switch (action.type) {
-    case 'ADD_TODO': {
-      return {
-        ...state,
-        todos: [...state.todos, action.payload]
-      };
-    }
-    case 'TOGGLE_TODO':
-      const toggledTodos = state.todos.map(t =>
-        t.id === action.payload.id ? { ...t, completed: !t.completed } : t
-      );
-      return {
-        ...state,
-        todos: toggledTodos
-      };
+    // TDA: add todo list   
 
-    case 'REMOVE_TODO':
-      const filteredTodos = state.todos.filter(t => t.id !== action.payload.id);
-      return {
-        ...state,
-        todos: filteredTodos
-      };
+    // TDR : remove todo list
+
+    // TDTL : add todo toggle
+
     default:
       return state;
   }
