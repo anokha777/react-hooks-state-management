@@ -30,8 +30,7 @@ export default function Todos() {
           <input className={themeClass} type='text' id='add-todo' placeholder='Add Todo...' />
         </form>
       </div>
-      {/* <h1>{numberOfTodosLeft}</h1> */}
-
+      <h1>{initialState.todos.length}</h1>
       <ul className='list-wrapper'>
         {initialState.todos.map((todo) => (
           <li className={`${themeClass} todo-item`} key={todo.id}>
