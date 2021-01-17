@@ -5,9 +5,12 @@ function DataList(props) {
 }
 
 const withDataFetching = (WrappedComponent) => {
- return class WithDataFetching extends React.Component {
+  return class WithDataFetching extends React.Component {
     // HOC03 : state defined and lifecycle call
-  }
+    render() {
+      return <WrappedComponent />;
+    }
+  };
 };
 
 export default withDataFetching(DataList);
