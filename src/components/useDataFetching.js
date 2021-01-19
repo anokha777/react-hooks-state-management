@@ -5,7 +5,7 @@ function DataList() {
 }
 
 function useDataFetching(dataSource){
-    // define state hooks for states
+    // define useState hooks for states
 
     // CH03 : define side effect for fetching the data
 

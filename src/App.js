@@ -1,5 +1,5 @@
-export { default } from './components/CounterWithHOC';
-// export { default } from './components/CounterWithHooks';
+export { default } from './components/withDataFetching';
+// export { default } from './components/useDataFetching';
 
 // export { default } from './components/Todos';
 
