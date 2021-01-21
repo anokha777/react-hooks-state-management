@@ -5,34 +5,48 @@ import todoReducer, { initialState } from '../reducer/todoReducer';
 
 export default function Todos() {
   const { theme } = useContext(ThemeContext);
-  // T02 : add reducer and ref
+  const inputRef = useRef();
+  const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  // T01 : find left todos
 
-  //  EFT: to add effects
+  const completedTodos = state.todos.filter((todo) => {
+      return todo.completed;
+    });
+  
+    useEffect(() => {
+      document.title = `You have ${completedTodos.length} items completed!`;
+    });
 
   function addTodo(event) {
     event.preventDefault();
-    // TDS1 : add todos
+    dispatch({
+          type: 'ADD_TODO',
+          payload: {
+            id: uuidv4(),
+            title: inputRef.current.value,
+            completed: false
+          }
+        });
+        inputRef.current.value = '';
   }
 
   function toggleComplete(id) {
-    // TDS2 : toggle todos
+    dispatch({ type: 'TOGGLE_TODO', payload: { id } });
   }
   function deleteTodo(id) {
-    // TDS3 : remove todos
+    dispatch({ type: 'REMOVE_TODO', payload: { id } });
   }
   const themeClass = theme.background === '#222222' ? 'dark-theme' : 'light-theme';
   return (
     <div className='todo-app'>
       <div>
         <form onSubmit={addTodo}>
-          <input className={themeClass} type='text' id='add-todo' placeholder='Add Todo...' />
+          <input className={themeClass} type='text' ref={inputRef} id='add-todo' placeholder='Add Todo...' />
         </form>
       </div>
-      <h1>{initialState.todos.length} Todos</h1>
+      <h1>{state.todos.length} Todos</h1>
       <ul className='list-wrapper'>
-        {initialState.todos.map((todo) => (
+        {state.todos.map((todo) => (
           <li className={`${themeClass} todo-item`} key={todo.id}>
             <span className={todo.completed ? 'todo-complete' : ''} onDoubleClick={() => toggleComplete(todo.id)}>
               {todo.title}
